@@ -1,0 +1,6 @@
+{
+    "debug.onTaskErrors": "showErrors",
+    "files.associations": {
+        "iostream": "cpp"
+    }
+}
