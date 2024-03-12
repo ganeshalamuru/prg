@@ -1,0 +1,11 @@
+{
+    "debug.onTaskErrors": "showErrors",
+    "files.associations": {
+        "iostream": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "ostream": "cpp",
+        "optional": "cpp"
+    }
+}

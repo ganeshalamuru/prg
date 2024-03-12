@@ -1,0 +1,12 @@
+{
+    "debug.onTaskErrors": "showErrors",
+    "files.associations": {
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "span": "cpp",
+        "type_traits": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
+    }
+}

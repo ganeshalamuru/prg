@@ -9,105 +9,65 @@ typedef long long ll;typedef long double ld;typedef pair<int,int> pii;
 const ll mod = 1e9+7, N = 2e6+7, M = 2e6+7, INF = INT_MAX/10;
 ll powe(ll x, ll y){ x = x%mod, y=y%(mod-1);ll ans = 1;while(y>0){if (y&1){ans = (1ll * x * ans)%mod;}y>>=1;x = (1ll * x * x)%mod;}return ans;}
 
-int n,m;
-vector<string> brd;
-vector<vector<int>> vis;
 
-void dfs(int i, int j, int color) {
-    if (vis[i][j] != -1) {
-        return;
-    }
-    vis[i][j] = color;
-    for(int z=j+1;z<m;z++) {
-        if(brd[i][z] != '.') {
-            dfs(i,z, color^1);
-            break;
-        }
-    }
-    for(int z=i+1;z<n;z++) {
-        if (brd[z][j] != '.') {
-            dfs(z,j,color^1);
-            break;
-        }
-    }
-    for(int z=j-1;z>=0;z--) {
-        if (brd[i][z] != '.') {
-            dfs(i,z,color^1);
-            break;
-        }
-    }
-    for(int z=i-1;z>=0;z--) {
-        if (brd[z][j] != '.') {
-            dfs(z,j,color^1);
-            break;
-        }
-    }
-}
-
-
-void solve(){
+void solve() {
+    int n,m;
     cin >> n >> m;
-    brd = vector<string>(n);
-    vis = vector<vector<int>>(n,vector<int>(m,-1));
+    vector<string> brd(n),color(n);
+    vector<int> rowUcnt(n,0), colLcnt(m,0);
     for(int i=0;i<n;i++)
-        cin >> brd[i];
+        cin >> brd[i],color[i]=brd[i];
     for(int i=0;i<n;i++)
         for(int j=0;j<m;j++)
-            if (brd[i][j]!='.' && vis[i][j]==-1)
-                dfs(i,j,0);
-    bool monchrome = true;
-    for(int i=0;i<n && monchrome;i++) {
-        for(int j=0;j<m && monchrome;j++) {
-            if (brd[i][j] == '.')
-                continue;
-            if (brd[i][j] == 'L' && vis[i][j]==vis[i][j+1]) {
-                monchrome = false;
-            } else if (brd[i][j] == 'R' && vis[i][j]==vis[i][j-1]){
-                monchrome = false;
-            } else if (brd[i][j] == 'U' && vis[i][j]==vis[i+1][j]) {
-                monchrome = false;
-            } else if (brd[i][j] == 'D' && vis[i][j]==vis[i-1][j]) {
-                monchrome = false;
+            if (brd[i][j]=='L')
+                colLcnt[j]++;
+            else if (brd[i][j]=='U')
+                rowUcnt[i]++;
+    for(int i=0;i<n;i++) {
+        if (rowUcnt[i]%2) {
+            cout << "-1\n";
+            return;
+        }
+    }
+    for(int j=0;j<m;j++) {
+        if (colLcnt[j]%2) {
+            cout << "-1\n";
+            return;
+        }
+    }
+    // fill vertical
+    for(int i=0;i<n;i++) {
+        if (rowUcnt[i]==0)
+            continue;
+        int half = rowUcnt[i] / 2;
+        for(int j=0;j<m;j++) {
+            if (brd[i][j]=='U') {
+                char ch1 = half > 0 ? 'W' : 'B';
+                char ch2 = ch1 == 'W' ? 'B':'W';
+                color[i][j] = ch1, color[i+1][j] = ch2;
+                half--;
             }
         }
     }
-    bool numwbeq = true;
-    for(int i=0;i<n && numwbeq;i++) {
-        int b=0,w=0;
-        for(int j=0;j<m && numwbeq;j++)
-            if (vis[i][j]==0)
-                b++;
-            else if(vis[i][j]==1)
-                w++;
-        if (b!=w)
-            numwbeq = false;
-    }
-    for(int j=0;j<m && numwbeq;j++) {
-        int b=0,w=0;
-        for(int i=0;i<n && numwbeq;i++)
-            if (vis[i][j]==0)
-                b++;
-            else if(vis[i][j]==1)
-                w++;
-        if (b!=w)
-            numwbeq = false;
-    }
-    if (!numwbeq || !monchrome) {
-        cout << -1 << "\n";
-        return;
-    }
-
-    for(int i=0;i<n;i++) {
-        for(int j=0;j<m;j++) {
-            if (brd[i][j] == '.')
-                cout << ".";
-            else
-                cout << (vis[i][j] ? 'W':'B');
+    // fill horizontal
+    for(int j=0;j<m;j++) {
+        if (colLcnt[j]==0)
+            continue;
+        int half = colLcnt[j] / 2;
+        for(int i=0;i<n;i++) {
+            if (brd[i][j]=='L') {
+                char ch1 = half > 0 ? 'W' : 'B';
+                char ch2 = ch1 == 'W' ? 'B':'W';
+                color[i][j] = ch1, color[i][j+1] = ch2;
+                half--;
+            }
+                
         }
-        cout << "\n";
     }
-}
+    for(string &s:color)
+        cout << s << "\n";
 
+}
 
 
 
