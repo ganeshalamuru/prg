@@ -10,10 +10,12 @@ const ll mod = 1e9+7, N = 2e6+7, M = 2e6+7, INF = INT_MAX/10;
 ll powe(ll x, ll y){ x = x%mod, y=y%(mod-1);ll ans = 1;while(y>0){if (y&1){ans = (1ll * x * ans)%mod;}y>>=1;x = (1ll * x * x)%mod;}return ans;}
 
 
+bool cmpChar(char x, char y) {
 
+}
 
-void solve(){
-	
+void solve() {
+
 }
 
 

@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define fast ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+typedef long long ll;typedef long double ld;typedef pair<int,int> pii;
+#define F first
+#define S second
+#define PB push_back
+#define MP make_pair
+const ll mod = 1e9+7, N = 2e6+7, M = 2e6+7, INF = INT_MAX/10;
+ll powe(ll x, ll y){ x = x%mod, y=y%(mod-1);ll ans = 1;while(y>0){if (y&1){ans = (1ll * x * ans)%mod;}y>>=1;x = (1ll * x * x)%mod;}return ans;}
+
+
+
+bool checklimits(int val, int a, int b, int c, int d, int n) {
+    vector<int> sums = {a+b,a+c,b+d,c+d};
+    for(auto sum:sums)
+        if (1>val-sum || val-sum>n)
+            return false;
+    return true;
+}
+
+void solve() {
+	int n,a,b,c,d;
+    cin >> n >> a >> b >> c >> d;
+    ll ans = 0;
+    for(int i=4-n;i<4*n;i++) {
+        if (!checklimits(i, a, b, c, d, n))
+            continue;
+        int leftlimit = max(1,4-i), rightlimit = min(n, 4*n-i);
+        if (leftlimit <= rightlimit)
+            ans += rightlimit-leftlimit+1;
+    }
+    cout << ans << "\n";
+}
+
+
+
+
+signed main() {
+    fast;
+    int t = 1;
+    while(t--){
+    	solve();
+    }
+    return 0;
+}
