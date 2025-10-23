@@ -11,9 +11,21 @@
                 "_UNICODE"
             ],
             "compilerPath": "C:\\msys64\\ucrt64\\bin\\g++.exe",
-            "cStandard": "c17",
-            "cppStandard": "c++20",
-            "intelliSenseMode": "linux-gcc-x64"
+            "compileCommands" :[],
+            "compilerArgs": [
+                "-pipe",
+                //"-fsanitize=undefined",
+                "-march=native",
+                "-std=c++23",
+                "-Werror",
+                "-Wconversion",
+                "-Wall",
+                "-Wshadow",
+                "-Wno-unused-result"
+            ],
+            "cStandard": "c23",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "windows-gcc-x64"
         },
         {
             "name": "Linux",
@@ -22,8 +34,8 @@
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",
-            "cStandard": "c17",
-            "cppStandard": "c++20",
+            "cStandard": "c23",
+            "cppStandard": "c++23",
             "intelliSenseMode": "linux-gcc-x64"
         }
     ],

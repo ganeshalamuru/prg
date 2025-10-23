@@ -1,0 +1,2 @@
+change to clangd server for compiler wanrings
+change compiler to clang

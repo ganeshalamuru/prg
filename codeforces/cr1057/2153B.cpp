@@ -6,25 +6,21 @@ typedef long long ll;typedef long double ld;typedef pair<int,int> pii;
 #define rall(v) rbegin(v),rend(v)
 #define F first
 #define S second
-void f(int a, char* b){
-    cout << "first\n";
-    return;
-};
-void f(const int a, char* b){
-    cout << "second\n";
-    return;
-}
+
+
 void solve() {
-    f(1,nullptr);
-	int n;
-    cin >> n;
-    set<int> s;
-    for(int i=0,x=0;i<n;i++) {
-        cin >> x;
-        s.insert(x);
+	int x,y,z;
+    cin >> x>> y >> z;
+    set<int> ss;
+    ss.insert(x&y);
+    ss.insert(y&z);
+    ss.insert(z&x);
+    ss.insert((x&y)&z);
+    if (ss.size() == 1) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
     }
-    int tt = 2* s.size();
-    cout << tt-1 << "\n";
 
 
 }

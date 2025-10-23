@@ -6,34 +6,29 @@ typedef long long ll;typedef long double ld;typedef pair<int,int> pii;
 #define rall(v) rbegin(v),rend(v)
 #define F first
 #define S second
-void f(int a, char* b){
-    cout << "first\n";
-    return;
-};
-void f(const int a, char* b){
-    cout << "second\n";
-    return;
-}
+const int mod = 1e9+7;
+
 void solve() {
-    f(1,nullptr);
-	int n;
+    int n;
     cin >> n;
-    set<int> s;
-    for(int i=0,x=0;i<n;i++) {
+    map<int,int> freq;
+    for(int i=0,x;i<n;i++) {
         cin >> x;
-        s.insert(x);
+        freq[x]++;
     }
-    int tt = 2* s.size();
-    cout << tt-1 << "\n";
-
-
+    int ans = 1;
+    for(auto& p:freq) {
+        ans=(1ll*ans*(p.second+1))%mod;
+    }
+    ans = (ans-1+mod)%mod;
+    cout << ans << "\n";
 }
 
 
 int main() {
     fast;
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--){
     	solve();
     }

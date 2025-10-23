@@ -16,7 +16,6 @@ void solve() {
     queue<pii> q({{0,0}});
     while(!q.empty()) {
         auto& [x,y]=q.front();
-        initializer_list{1,23};
         for(auto& [dx,dy]:{pii{-2,1},{-1,2},{1,2},{2,1},{2,-1},{1,-2},{-1,-2},{-2,-1}}) {
             int nx=x+dx,ny=y+dy;
             if (nx<0 || nx>=n || ny<0||ny>=n || minmoves[nx][ny]!=INT_MAX)
