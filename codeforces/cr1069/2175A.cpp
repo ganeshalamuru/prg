@@ -15,8 +15,22 @@ using pii = pair<int,int>;
 
 
 void solve() {
-	
-
+	ll n;
+    cin >> n;
+    vector<ll> a(n);
+    set<ll> ss;
+    for(int i=0;i<n;i++) {
+        cin >> a[i];
+        ss.insert(a[i]);
+    }
+    sort(all(a));
+    ll numd = ll(ss.size());
+    for(int i=0;i<n;i++) {
+        if (a[i]<numd)
+            continue;
+        cout << a[i] << "\n";
+        break;
+    }
 
 }
 

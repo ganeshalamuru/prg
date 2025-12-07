@@ -15,8 +15,26 @@ using pii = pair<int,int>;
 
 
 void solve() {
-	
-
+	int n,x;
+    cin >> n;
+    vector<int> arr(n);
+    for(int &num:arr)
+        cin >> num;
+    cin >> x;
+    if (n==1) {
+        if (arr[0]==x) {
+            cout << "YES\n";
+        } else {
+            cout << "NO\n";
+        }
+        return;
+    }
+    sort(all(arr));
+    if (arr[0]<=x && x<=arr[n-1]) {
+        cout << "YES\n";
+        return;
+    }
+    cout << "NO\n";
 
 }
 

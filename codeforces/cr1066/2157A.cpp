@@ -15,7 +15,22 @@ using pii = pair<int,int>;
 
 
 void solve() {
-	
+	int n;
+    cin >> n;
+    vector<int>freq(n+1);
+    for(int i=0,x;i<n;i++) {
+        cin >> x;
+        freq[x]++;
+    }
+    int ans = 0;
+    for(int i=0;i<=n;i++) {
+        if (freq[i]<i) {
+            ans+=freq[i];
+        } else {
+            ans+=freq[i]-i;
+        }
+    }
+    cout << ans << "\n";
 
 
 }

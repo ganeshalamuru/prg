@@ -1,36 +1,28 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-
+typedef long long ll;typedef long double ld;typedef pair<int,int> pii;
+#define fast ios::sync_with_stdio(false);cin.tie(nullptr);
 #define all(v) begin(v),end(v)
 #define rall(v) rbegin(v),rend(v)
 #define F first
 #define S second
 
-template <typename T>
-using min_pq = priority_queue<T, vector<T>, greater<T>>;
-using ll = long long;
-using pii = pair<int,int>;
-
-
 
 void solve() {
-	
+	int n;
+    cin >> n;
+    cout << (n-1)/2 << "\n";
 
 
 }
 
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
+    fast;
     int t = 1;
     cin >> t;
-
-    while(t--) {
+    while(t--){
     	solve();
     }
-    
     return 0;
 }

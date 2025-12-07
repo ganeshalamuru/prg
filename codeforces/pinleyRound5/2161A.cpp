@@ -15,8 +15,19 @@ using pii = pair<int,int>;
 
 
 void solve() {
-	
-
+	int r,x,d,n;
+    cin >> r >> x >> d >> n;
+    int cur = r;
+    string s;
+    cin >> s;
+    int ans = 0;
+    for(char ch:s) {
+        if (ch=='1' || cur < x) {
+            ans++;
+            cur = max(0,cur-d);
+        }
+    }
+    cout << ans << "\n";
 
 }
 

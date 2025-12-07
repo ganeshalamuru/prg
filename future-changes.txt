@@ -1,2 +1,4 @@
 change to clangd server for compiler wanrings
 change compiler to clang
+cpp insights vs code extension
+clangd language server

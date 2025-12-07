@@ -15,7 +15,11 @@ using pii = pair<int,int>;
 
 
 void solve() {
-	
+	int n;
+    cin >> n;
+    int y,r;
+    cin >> y >> r;
+    cout << min(n,r+y/2) << "\n";
 
 
 }

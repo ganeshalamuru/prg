@@ -15,9 +15,22 @@ using pii = pair<int,int>;
 
 
 void solve() {
-	
-
-
+	int n,l,r;
+    cin >> n >> l >> r;
+    vector<int> arr(n+1);
+    int curxor = 0;
+    for(int i=1;i<=n;i++) {
+        if (i==r) {
+            arr[i]=curxor^(l-1);
+        } else {
+            arr[i]=curxor^i;
+        }
+        curxor^=arr[i];
+    }
+    for(int i=1;i<=n;i++) {
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
 }
 
 
