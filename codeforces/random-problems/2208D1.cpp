@@ -60,6 +60,14 @@ void solve() {
             return;
         }
     }
+    for(int i=1;i<=n;i++) {
+        for(int j=1;j<=n;j++) {
+            if (i!=j && mat[i][j]==mat[j][i] && mat[i][j]==1) {
+                cout << "No\n";
+                return;
+            }
+        }
+    }
     vector<int> vis(n+1,0),postorder;
     for(int i=1;i<=n;i++) {
         if (vis[i]!=0)
@@ -69,25 +77,31 @@ void solve() {
             return;
         }
     }
+    // cout << "postorder\n";
+    // for(int i=0;i<n;i++) {
+    //     cout << postorder[i] << " " ;
+    // }
+    // cout << "\n";
     vector<vector<int>> fadj(n+1,vector<int>(n+1,0));
-    vector<vector<int>> rechability(n+1);
+    vector<vector<int>> reachability(n+1);
     int numedges = 0;
     for(int i=0;i<n;i++) {
         fill(all(vis),0);
+        vis[postorder[i]]=1;
         for(int j=i-1;j>=0;j--) {
             if (vis[postorder[j]]!=0)
                 continue;
             if (mat[postorder[i]][postorder[j]]==1) {
                 numedges++;
                 fadj[postorder[i]][postorder[j]]=1;
-                dfs2(postorder[j],adj,vis);
+                for(int v:reachability[postorder[j]])
+                    reachability[postorder[i]].push_back(v),vis[v]=1;
             }
         }
+        reachability[postorder[i]].push_back(postorder[i]);
         for(int j=1;j<=n;j++) {
-            if (postorder[i]==j)
-                continue;
             if (mat[postorder[i]][j]!=vis[j]) {
-                cout << "No\n";
+                cout << "No" << "\n";
                 return;
             }
         }

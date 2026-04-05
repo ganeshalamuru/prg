@@ -335,7 +335,7 @@ void push(int v) {
     lazy[v] = 0;
 }
 
-void updateval(int v, int tl, int tr, int l, int r, int addend) {
+void update(int v, int tl, int tr, int l, int r, int addend) {
     if (l > r) 
         return;
     if (l <= tl && tr <= r) {
@@ -344,8 +344,8 @@ void updateval(int v, int tl, int tr, int l, int r, int addend) {
     } else {
         push(v);
         int tm = (tl + tr) / 2;
-        updateval(v*2,	tl, tm, l, r, addend);
-        updateval(v*2+1, tm+1, tr, l, r, addend);
+        update(v*2,	tl, tm, l, r, addend);
+        update(v*2+1, tm+1, tr, l, r, addend);
         t[v] = max(t[v*2], t[v*2+1]);
     }
 }
