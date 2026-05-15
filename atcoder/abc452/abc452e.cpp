@@ -20,7 +20,7 @@ int madd(int a, int b) {
 }
 int mmul(int a, int b) {
     a%=mod,b%=mod;
-    return (1ll*a*b)%mod;
+    return int((1ll*a*b)%mod);
 }
 int msub(int a, int b) {
     a%=mod,b%=mod;
@@ -31,30 +31,28 @@ void solve() {
 	int n,m;
     cin >> n >> m;
     vector<int> a(n+1),b(m+1);
-    for(int i=1;i<=n;i++) {
+    for(int i=1;i<=n;i++)
         cin >> a[i];
-    }
-    for(int i=1;i<=m;i++) {
+    for(int i=1;i<=m;i++)
         cin >> b[i];
-    }
-    vector<int>psumb(n+1),psuma(n+1);
-    for(int i=1;i<=n;i++) {
-        psuma[i]=madd(psuma[i-1],b[i])%mod;
-    }
-    for(int i=1;i<=m;i++) {
-        psumb[i]=madd(psumb[i-1],b[i])%mod;
-    }
-    int ans = 0;
-    for(int i=1;i<=min(m,n);i++) {
-        ans = madd(ans,mmul(i,mmul(a[i],psumb[m]-psumb[i])));
-    }
-    for(int j=2;j<=min(m,n);j++) {
+    vector<int>psuma(n+1),ppsuma(n+1);
+    for(int i=1;i<=n;i++)
+        psuma[i]=madd(psuma[i-1],a[i]);
+    for(int i=1;i<=n;i++)
+        ppsuma[i]=madd(ppsuma[i-1],psuma[i]);
+    int ans = 0; 
+    for(int j=2;j<=m;j++) {
         int tmp = 0;
-        for(int z=j;z<=m;z+=j)
-            tmp = madd(tmp, a[z]);
-        ans = madd(ans,mmul(b[j],msub(psuma[n]-psuma[j],tmp)));
+        for(int z=j;z<=n;z+=j)
+            tmp = madd(tmp,mmul(b[j],msub(mmul(j,psuma[z-1]),msub(ppsuma[z-1],ppsuma[max(0,z-1-j)]))));
+        if (n%j!=0) {
+            int md = n%j;
+            tmp = madd(tmp,mmul(b[j],msub(mmul(md,psuma[n]),msub(ppsuma[n-1],ppsuma[n-1-md]))));
+        }
+        ans = madd(ans, tmp);
     }
-
+    
+    cout << ans << "\n";
 
 
 }
